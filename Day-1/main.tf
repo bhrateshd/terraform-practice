@@ -1,13 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "5.62.0"
-    }
-  }
-}
-
-provider "aws" {
+provider "aws" {     # this is a provide on which we are gonna create a machine
     region = "ap-south-1"
     
   # Configuration options
