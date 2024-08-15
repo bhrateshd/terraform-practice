@@ -1,8 +1,23 @@
-provider "aws" {
-    region = "ap-south-1"  # Set your desired AWS region
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.62.0"
+    }
+  }
 }
 
-resource "aws_instance" "example" {
-    ami           = "ami-0c55b159cbfafe1f0"  # Specify an appropriate AMI ID
+provider "aws" {
+    region = "ap-south-1"
+    
+  # Configuration options
+}
+
+resource "aws_instance" "myserver" {
+    ami = "ami-0ad21ae1d0696ad58"
     instance_type = "t2.micro"
+
+    tags = {
+      Name = "SampleServer"
+    }
 }
