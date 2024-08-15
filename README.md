@@ -33,16 +33,16 @@ Terraform uses providers to interact with various services and APIs. Each provid
 **Use Cases**
 
     **Cloud Infrastructure Provisioning:**
-      Provision and manage cloud resources like virtual machines, networks, storage, and more, across multiple  cloud providers.
+    Provision and manage cloud resources like virtual machines, networks, storage, and more, across multiple  cloud providers.
 
-      **Hybrid and Multi-Cloud Management:**
+    **Hybrid and Multi-Cloud Management:**
       Manage a mix of on-premises and cloud resources in a consistent manner, facilitating hybrid and multi-  cloud strategies.
       
-      **Infrastructure Automation:**
-      Automate the provisioning and management of infrastructure, reducing manual errors and increasing consistency.
+    **Infrastructure Automation:**
+    Automate the provisioning and management of infrastructure, reducing manual errors and increasing consistency.
 
-      **Disaster Recovery and Compliance:**
-      Easily replicate environments for disaster recovery or for compliance and testing purposes.
+    **Disaster Recovery and Compliance:**
+    Easily replicate environments for disaster recovery or for compliance and testing purposes.
 
 
  **Benefits**
