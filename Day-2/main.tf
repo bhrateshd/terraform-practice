@@ -17,23 +17,12 @@ provider "aws" {
 }
 
 resource "aws_instance" "myserver" {
-    ami = "ami-0ad21ae1d0696ad58"
-    instance_type = "t2.micro"
+    ami = var.ami_id
+    instance_type = var.instance_type
 
     tags = {
       Name = "SampleServer"
     }
-}
-
-resource "aws_s3_bucket" "demo-bucket" {
-  bucket = "demo-bucket"
-}
-
-resource "aws_s3_object" "bucket-data" {
-    bucket =  aws_s3_bucket.demo-bucket.bucket
-    source = "./myfile.txt"
-    key = "mydata.txt"
-  
 }
 
 
