@@ -5,8 +5,8 @@ provider "aws" {
 
 module "ec2_instance" {
     source = "./modules/ec2_instance"
-    ami_value = ""
-    instance_type_value = ""
-    subnet_id_value = ""
+    ami_value = "add youe ami value"
+    instance_type_value = "t2.micro"
+    subnet_id_value = "subnet-jsdug78fd78"
   
 }
