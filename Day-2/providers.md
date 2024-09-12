@@ -5,14 +5,16 @@
 
   Here is an example of how to use the aws provider in a Terraform configuration:
 
-  provider "aws" {
-    region = "us-east-1"
-  }
+  ```hcl
+provider "aws" {
+  region = "us-east-1"
+}
 
-  resource "aws_instance" "example" {
-    ami = "ami-0123456789abcdef0" # Change the AMI 
-    instance_type = "t2.micro"
-  }
+resource "aws_instance" "example" {
+  ami = "ami-0123456789abcdef0" # Change the AMI 
+  instance_type = "t2.micro"
+}
+```
 
   In this example, we are first defining the aws provider. We are specifying the region as us-east-1. Then, we are defining the aws_instance resource. We are specifying the AMI ID and the instance type.
 
