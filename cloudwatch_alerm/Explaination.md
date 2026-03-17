@@ -141,6 +141,111 @@ threshold	Alarm if CPU > 80%
 period	Metric evaluation time
 evaluation_periods	Number of checks
 alarm_actions	Trigger SNS notification
+
+
+1️⃣ dimensions Block
+dimensions = {
+  InstanceId = var.instance_id
+}
+What is a Dimension?
+
+In CloudWatch, dimensions are key-value pairs used to identify a specific resource for a metric.
+
+Many AWS services send metrics to CloudWatch, so dimensions help CloudWatch know which exact resource to monitor.
+
+Example
+
+For EC2 CPU monitoring:
+
+Metric: CPUUtilization
+Namespace: AWS/EC2
+Dimension: InstanceId
+
+So the alarm must know which EC2 instance to monitor.
+
+Terraform Explanation
+InstanceId = var.instance_id
+
+Meaning:
+
+InstanceId → CloudWatch dimension key
+
+var.instance_id → EC2 instance ID passed from variables
+
+Example actual value:
+
+InstanceId = i-0abc123456789xyz
+
+So the alarm monitors CPU utilization of that specific EC2 instance.
+
+Without Dimension
+
+If we didn’t use dimensions:
+
+CloudWatch would not know which instance's CPU metric to monitor.
+
+Simple Example
+AWS/EC2
+   │
+   ├── Instance i-123
+   ├── Instance i-456
+   └── Instance i-789
+
+Using dimension:
+
+InstanceId = i-123
+
+The alarm monitors only instance i-123.
+
+2️⃣ alarm_actions
+alarm_actions = [aws_sns_topic.alerts.arn]
+
+This defines what action should happen when the alarm triggers.
+
+When the metric crosses the threshold:
+
+CPU > 80%
+
+CloudWatch changes alarm state to:
+
+ALARM
+
+Then it executes the action defined here.
+
+In Our Setup
+
+The action is sending a notification to an **Amazon Simple Notification Service topic.
+
+alarm_actions = [aws_sns_topic.alerts.arn]
+
+Meaning:
+
+When alarm triggers →
+
+CloudWatch Alarm
+        │
+        ▼
+SNS Topic
+        │
+        ▼
+Email Notification
+Why ARN is used?
+
+The SNS topic is identified using its ARN (Amazon Resource Name).
+
+Example ARN:
+
+arn:aws:sns:ap-south-1:123456789012:cloudwatch-alerts
+
+Terraform automatically fetches it using:
+
+aws_sns_topic.alerts.arn
+
+
+
+
+
+
 6️⃣ outputs.tf
 output "sns_topic_arn" {
   value = aws_sns_topic.alerts.arn
